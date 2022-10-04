@@ -1,5 +1,5 @@
 // defines after how many seconds the script should run
-const updateDelay = .5; 
+const updateDelay = 0.5;
 
 // custom round method that removes zeros at the end of the number
 Number.prototype.round = function (places) {
@@ -111,6 +111,15 @@ function changePercentage(element, remaining) {
   }
 }
 
+// redirect to home if promo pages are opened
+function redirectToHomeFromPromo() {
+  const url = window.location.href;
+  if (url?.includes("/promo")) {
+    window.location.href = "//myslt.slt.lk";
+  }
+  console.log("Redirected from a promo page...");
+}
+
 // initialize the script
 function main() {
   const text = document.getElementsByClassName("used-of");
@@ -128,5 +137,6 @@ function main() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  redirectToHomeFromPromo();
   setInterval(main, updateDelay * 1000);
 });
